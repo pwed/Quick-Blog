@@ -51,6 +51,9 @@ func main() {
 	defer myDB.Close()
 
 	myDB.Create("names")
+	myDB.Create("users")
+	myDB.Create("posts")
+	myDB.Create("comments")
 
 	m := mux.NewRouter()
 	m.HandleFunc("/api", Index)
