@@ -1,9 +1,11 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"log"
 	"net/http"
+	"strconv"
 
 	"github.com/gorilla/mux"
 
@@ -39,7 +41,30 @@ func Names(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "names =, %s!\n", string(names))
 }
 
+func Post(w http.ResponseWriter, r *http.Request) {
+
+	w.Header().Set("Content-Type", "text/plain")
+	col := myDB.Use("posts")
+	vars := mux.Vars(r)
+	idString := vars["id"]
+	id, _ := strconv.Atoi(idString)
+
+	post, _ := col.Read(id)
+
+	response, _ := json.Marshal(post)
+	fmt.Fprint(w, string(response))
+}
+
+func notFound(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprint(w, "this is not the page you were looking for")
+}
+
 var myDB *db.DB
+
+type PostData struct {
+	Author string
+	Body   string
+}
 
 func main() {
 	// (Create if not exist) open a database
@@ -54,11 +79,18 @@ func main() {
 	myDB.Create("users")
 	myDB.Create("posts")
 	myDB.Create("comments")
+	posts := myDB.Use("posts")
+	posts.InsertRecovery(1, map[string]interface{}{
+		"Author": "Pwed",
+		"Body":   "hello",
+		"Title":  "Test",
+	})
 
 	m := mux.NewRouter()
 	m.HandleFunc("/api", Index)
 	m.HandleFunc("/api/hello/{name}", Hello)
 	m.HandleFunc("/api/names", Names)
+	m.HandleFunc("/api/post/{id:[1-9]+}", Post)
 	m.PathPrefix("/").Handler(http.FileServer(http.Dir("static")))
 
 	log.Fatal(http.ListenAndServe(":8080", m))

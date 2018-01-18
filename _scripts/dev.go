@@ -1,5 +1,3 @@
-// +build ignore
-
 package main
 
 import (
@@ -37,7 +35,7 @@ func gin() {
 	}
 	fmt.Println(gopath)
 	ginPath := gopath + "/bin/gin"
-	gin := exec.Command(ginPath, "-a", "8080", "-i", "-x", "scripts")
+	gin := exec.Command(ginPath, "-a", "8080", "-i", "-x", "_scripts")
 	ExecWithStdout(gin)
 	gin.Run()
 }
