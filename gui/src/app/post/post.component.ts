@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-post',
@@ -8,13 +9,17 @@ import { HttpClient } from '@angular/common/http';
 })
 export class PostComponent implements OnInit {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private route: ActivatedRoute) { }
+
+  PostContent: string = "Loading ..."
 
   ngOnInit(): void {
-    // let url = "http://localhost:3000/api/post/1";
-    this.http.get("http://localhost:3000/api/post/1").subscribe(
+    let url = "http://localhost:3000/api/post/" + this.route.snapshot.params.id;
+    this.http.get(url).subscribe(
       data => {
+        let post: any = data
         console.log(data)
+        this.PostContent = post.Body
       }
     )
   }

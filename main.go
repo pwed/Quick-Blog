@@ -55,10 +55,6 @@ func Post(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprint(w, string(response))
 }
 
-func notFound(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprint(w, "this is not the page you were looking for")
-}
-
 var myDB *db.DB
 
 type PostData struct {

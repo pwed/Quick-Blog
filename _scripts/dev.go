@@ -23,6 +23,7 @@ func main() {
 
 func ExecWithStdout(cmd *exec.Cmd) {
 	cmd.Stdout = os.Stdout
+	cmd.Stderr = os.Stderr
 }
 
 func gin() {
