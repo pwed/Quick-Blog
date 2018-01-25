@@ -17,9 +17,8 @@ export class PostComponent implements OnInit {
     let url = "http://localhost:3000/api/post/" + this.route.snapshot.params.id;
     this.http.get(url).subscribe(
       data => {
-        let post: any = data
-        console.log(data)
-        this.PostContent = post.Body
+        let post: any = data;
+        this.PostContent = post.Body;
       }
     )
   }

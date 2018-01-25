@@ -1,3 +1,17 @@
 <p>
   home works!
 </p>
+
+<div class="PostCount">
+  {{PostCount}}
+
+</div>
+<div class="PostList">
+  <ul *ngFor="let id of PostList; let i = index">
+    <li>
+      <a routerLink="/post/{{id}}">Post {{id}}</a>
+    </li> 
+
+  </ul>
+
+</div>

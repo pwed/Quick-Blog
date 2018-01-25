@@ -1,3 +1,32 @@
 <p>
   new-post works!
 </p>
+
+<div class="container">
+  <h1>New Post Form</h1>
+  <form #newPostForm="ngForm">
+    <div class="form-group">
+      <label for="Author">Author</label>
+      <input type="text" class="form-control" id="Author"
+      [(ngModel)]="model.Author" name="author"
+      #author="ngModel" required>
+    </div>
+
+    <div class="form-group">
+      <label for="Body">Body</label>
+      <textarea class="form-control" id="Body" rows="10" cols="50"
+      [(ngModel)]="model.Body" name="body"
+       #body="ngModel">
+        Add post content here ...
+      </textarea>
+    </div>
+
+    <button type="submit" class="btn btn-success" (click)="sendPost()">Submit</button>
+
+  </form>
+</div>
+
+<p>
+    <a routerLink="{{newPostLink}}">new post</a>
+  {{newPostLink}}
+</p>
