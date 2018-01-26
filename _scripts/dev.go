@@ -6,7 +6,6 @@ import (
 	"os"
 	"os/exec"
 	"sync"
-	"time"
 )
 
 var wg sync.WaitGroup
@@ -28,13 +27,12 @@ func ExecWithStdout(cmd *exec.Cmd) {
 
 func gin() {
 	defer wg.Done()
-	time.Sleep(time.Second * 10)
-	fmt.Println("Starting gin to build and watch for changes in the go project")
+	fmt.Println("Starting gin to build and watch for changes in the go project\n",
+		"Angular build might take a while longer so routes will 404 for up to 30 seconds")
 	gopath := os.Getenv("GOPATH")
 	if gopath == "" {
 		gopath = build.Default.GOPATH
 	}
-	fmt.Println(gopath)
 	ginPath := gopath + "/bin/gin"
 	gin := exec.Command(ginPath, "-a", "8080", "-i", "-x", "_scripts")
 	ExecWithStdout(gin)
