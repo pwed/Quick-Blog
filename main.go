@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 	"strconv"
 
 	"github.com/fatih/structs"
@@ -150,7 +151,11 @@ func main() {
 	m.HandleFunc("/api/newpost", NewPost)
 	m.HandleFunc("/api/post/{id}", Post).Methods("GET")
 	m.HandleFunc("/api/posts/{number}", Posts).Methods("GET")
-	m.PathPrefix("/").Handler(http.FileServer(http.Dir("static")))
+	if len(os.Args) > 1 && os.Args[1] == "dev" {
+		m.PathPrefix("/").Handler(http.FileServer(http.Dir("static")))
+	} else {
+		m.PathPrefix("/").Handler(http.FileServer(assetFS()))
+	}
 
 	fmt.Println("Starting server @ http//:localhost:8080")
 

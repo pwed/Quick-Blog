@@ -11,15 +11,15 @@ export class PostComponent implements OnInit {
 
   constructor(private http: HttpClient, private route: ActivatedRoute) { }
 
-  PostContent: string = "Loading ..."
+  PostContent = 'Loading ...';
 
   ngOnInit(): void {
-    let url = "http://localhost:3000/api/post/" + this.route.snapshot.params.id;
+    const url = '/api/post/' + this.route.snapshot.params.id;
     this.http.get(url).subscribe(
       data => {
-        let post: any = data;
+        const post: any = data;
         this.PostContent = post.Body;
       }
-    )
+    );
   }
 }

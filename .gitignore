@@ -5,3 +5,4 @@ Quick-Blog
 tmp**
 static**
 gin-bin**
+bindata_assetfs.go

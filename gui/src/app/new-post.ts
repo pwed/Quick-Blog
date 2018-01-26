@@ -5,5 +5,4 @@ export class NewPost {
         public Body: string
     ) {  }
 
-    
 }
