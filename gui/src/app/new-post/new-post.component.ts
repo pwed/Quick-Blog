@@ -11,11 +11,11 @@ import { HttpClient } from '@angular/common/http';
 export class NewPostComponent implements OnInit {
 
   model = new NewPost(
-    "fred",
-    "Add post content here ..."
-  )
+    'fred',
+    'Add post content here ...'
+  );
 
-  newPostLink: string
+  newPostLink: string;
 
   constructor(private http: HttpClient) { }
 
@@ -23,16 +23,16 @@ export class NewPostComponent implements OnInit {
   }
 
   sendPost() {
-    console.log("sending data")
-    console.log(this.model)
-    this.http.post("/api/newpost", 
+    console.log('sending data');
+    console.log(this.model);
+    this.http.post('/api/newpost',
       this.model).subscribe(
       data => {
-        console.log(data)
-        let response: any = data 
-        this.newPostLink = `/post/` + response.newID
+        console.log(data);
+        const response: any = data;
+        this.newPostLink = `/post/` + response.newID;
       }
-    )
+    );
   }
 
 }
