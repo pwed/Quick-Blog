@@ -119,10 +119,12 @@ func NewPost(w http.ResponseWriter, r *http.Request) {
 
 var myDB *db.DB
 
+// PostData cantains all data relating to a post
 type PostData struct {
 	Author string `json:"author"`
 	Body   string `json:"body"`
 	Date   string `json:"date,omitempty"`
+	ID     int    `json:"id,omitempty"`
 }
 
 func main() {
