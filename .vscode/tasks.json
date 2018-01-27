@@ -6,7 +6,7 @@
         {
             "label": "Dev Build and Watch",
             "type": "shell",
-            "command": "go run _scripts/dev.go",
+            "command": "catalyst",
             "problemMatcher": [
             ],
             "group": {
@@ -23,7 +23,7 @@
         {
             "label": "Production build",
             "type": "shell",
-            "command": "go run _scripts/dev.go prod",
+            "command": "catalyst prod",
             "problemMatcher": [
             ],
             "group": "build",
