@@ -4,7 +4,7 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "Dev Build and Watch",
+            "label": "Catalyst Build and Watch",
             "type": "shell",
             "command": "catalyst",
             "problemMatcher": [
@@ -21,7 +21,7 @@
             }
         },
         {
-            "label": "Production build",
+            "label": "Catalyst Production Build",
             "type": "shell",
             "command": "catalyst prod",
             "problemMatcher": [

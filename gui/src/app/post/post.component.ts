@@ -18,7 +18,7 @@ export class PostComponent implements OnInit {
     this.http.get(url).subscribe(
       data => {
         const post: any = data;
-        this.PostContent = post.Body;
+        this.PostContent = post.Body.HTML;
       }
     );
   }
