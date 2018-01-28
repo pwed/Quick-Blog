@@ -1,1 +1,28 @@
 /* You can add global styles to this file, and also import other style files */
+@font-face {
+    font-family: GoRegular;
+    src: url(/assets/Go-Regular.ttf);
+}
+
+@font-face {
+    font-family: GoMono;
+    src: url(/assets/Go-Mono.ttf);
+}
+
+@font-face {
+    font-family: GoSmallcaps;
+    src: url(/assets/Go-Smallcaps.ttf);
+}
+
+
+html, body, p, a {
+    font-family: GoRegular;
+}
+
+code {
+    font-family: GoMono;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: GoSmallcaps;
+}
